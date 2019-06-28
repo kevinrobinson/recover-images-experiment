@@ -3,6 +3,8 @@ fiddling with recovering information about a model's training images by throwing
 
 https://repl.it/@kevinrobinson/phack
 
+![demo.png](demo.png)
+
 ### things to try
 if we generate all images and classify them, won't we find a few images that end up with high confidence since they happen to match the training set?  with small n models (like trained in the browser), this might happen a lot, where the model just memorizes each of the fe examples.  with a small enough image space, could we recover the original images from the training set?
 
