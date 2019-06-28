@@ -1,6 +1,8 @@
 # recover-images-experiment
 fiddling with recovering information about a model's training images by throwing examples at a classifier
 
+https://repl.it/@kevinrobinson/phack
+
 ### things to try
 if we generate all images and classify them, won't we find a few images that end up with high confidence since they happen to match the training set?  with a small enough image space, could we recover the original images from the training set?
 
