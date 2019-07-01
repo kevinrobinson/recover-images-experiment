@@ -1,0 +1,12 @@
+{
+  "tfjsVersion": "1.1.2",
+  "tmVersion": "1.1.0",
+  "tmSupportVersion": "1.0.5-b",
+  "timeStamp": "2019-07-01T21:26:51.405Z",
+  "userMetadata": {},
+  "modelName": "catdog",
+  "labels": [
+    "cat",
+    "dog"
+  ]
+}

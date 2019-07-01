@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>catdog</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.1.2/dist/tf.min.js"></script>
+  <script src="https://storage.googleapis.com/tm-pro/v1.0.5-c/teachablemachine-image.min.js"></script>
+  </head>
+  <body>
+<script type="text/javascript">
+  async function load() {
+    // the json file (model topology) has a reference to the bin file (model weights)
+    const domain = 'http://localhost:5000/';
+    // https://storage.googleapis.com/tm-mobilenet/
+    const checkpointURL = `${domain}catdog/model.json`;
+    // the metatadata json file contains the text labels of your model and additional information
+    const metadataURL = `${domain}catdog/metadata.json`;
+
+
+    // load the model and metadata
+    const model = await tm.mobilenet.load(checkpointURL, metadataURL);
+    const maxPredictions = model.getTotalClasses();
+
+    // use tm.mobilenet.loadFromFiles() function to support files from a file picker or files from your local hard drive
+    // you need to create File objects, like with file input elements (<input type="file" ...>)
+    // const uploadJSONInput = document.getElementById('upload-json');
+    // const uploadWeightsInput = document.getElementById('upload-weights');
+    // model = await tm.mobilenet.loadFromFiles(uploadJSONInput.files[0], uploadWeightsInput.files[0])
+
+    // predict can take in an image, video or canvas html element
+    // we set flip to true since the webcam was only flipped in CSS
+    async function predict(imgEl) {
+      const flip = true;
+      const prediction = await model.predict(imgEl, flip, maxPredictions);
+      console.log('prediction:', prediction);
+      return prediction;
+    }
+
+    return {model, predict};
+  }
+
+  const urls = [
+    'img/dog/1.png',
+    'img/dog/2.png',
+    'img/dog/3.png',
+    'img/dog/4.png',
+    'img/cat/1.png',
+    'img/cat/2.png',
+    'img/cat/3.png',
+    'img/cat/4.png'
+  ];
+  // ].slice(0, 1);
+
+  async function main() {
+    const {model, predict} = await load();
+    console.log('model.model.summary', model.model.summary());
+    window.model = model;
+    for (var i = 0; i < urls.length; i++) {
+      const url = urls[i];
+      const el = document.createElement('div');
+      el.style['display'] = 'flex';
+      el.style['flex-direction'] = 'row';
+      document.body.appendChild(el);
+
+      const imgEl = document.createElement('img');
+      imgEl.height = 100; // note that changing aspect ratio impacts predictions significantly
+      el.appendChild(imgEl);
+      await setSrcAndWait(imgEl, url);
+
+      const prediction = await predict(imgEl);
+      const pre = document.createElement('pre');
+      pre.innerHTML = JSON.stringify(prediction, null, 2);
+      el.appendChild(pre);
+    }
+  }
+
+  function setSrcAndWait(imgEl, url) {
+    return new Promise((resolve, reject) => {
+      imgEl.onload = () => resolve();
+      imgEl.onerror = () => reject();
+      imgEl.src = url;
+    });
+  }
+
+  main();
+</script>
