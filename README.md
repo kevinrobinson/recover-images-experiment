@@ -3,8 +3,9 @@ fiddling with recovering information about a model's training images by throwing
 
 ## catdog
 what can you infer from predictions?  if it's a single layer of weights on top of the last layer of mobilenet before classification, does that layer of weights reveal information?  this gets stuck on the fact that these predictions are noisy to image stretching and skewing.  separately, need to visualize that last layer to understand what's the maximum possible influence of the classification weights vs. the mobilenet embeddings.
-<img src="doc/catdog-a.png" height="200">
-<img src="doc/catdog-b.png" height="200">
+
+<img src="doc/catdog-a.png" height="350">
+<img src="doc/catdog-b.png" height="350">
 
 ## fiddling with generating images
 - https://repl.it/@kevinrobinson/phack
