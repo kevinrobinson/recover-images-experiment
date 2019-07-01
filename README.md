@@ -1,14 +1,14 @@
 # recover-images-experiment
 fiddling with recovering information about a model's training images by throwing examples at a classifier
 
-- https://repl.it/@kevinrobinson/phack-teachable-machines
-- https://repl.it/@kevinrobinson/phack-viz
-
 ## fiddling with generating images
 - https://repl.it/@kevinrobinson/phack
 ![demo.png](demo.png)
 
 ## constrained image space, and seeing what can be inferred about training from predictions
+- https://repl.it/@kevinrobinson/phack-teachable-machines
+- https://repl.it/@kevinrobinson/phack-viz
+
 ![tm-train.png](tm-train.png)
 ![highest.png](highest.png)
 ![lowest.png](lowest.png)
