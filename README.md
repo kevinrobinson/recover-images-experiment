@@ -2,6 +2,8 @@
 fiddling with recovering information about a model's training images by throwing examples at a classifier
 
 https://repl.it/@kevinrobinson/phack
+https://repl.it/@kevinrobinson/phack-teachable-machines
+https://repl.it/@kevinrobinson/phack-viz
 
 ![demo.png](demo.png)
 
